@@ -112,3 +112,37 @@ const Thing = props => {
   return ...
 }
 ```
+
+---
+
+# Hooks syntax: tuples
+
+Hooks return a `tuple`, or ordered list, containing the relevant data.
+
+`useState` for example returns a tuple containing the current state value and a setter to update the value.
+
+```javascript
+const myState = useState("hi");
+// myState ["hi", fn (value) => updateState]
+```
+
+---
+
+# Array destructuring
+
+A short-hand syntax for accessing members of an array 
+
+```javascript
+const myArray = ["orange", "pineapple"];
+```
+
+```javascript
+const floridian = myArray[0];
+const hawaiian = myArray[1];
+```
+
+Equivalent to:
+
+```javascript
+const [floridian, hawaiian] = myArray;
+```
