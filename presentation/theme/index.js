@@ -3,56 +3,68 @@ import createTheme from "../../createTheme";
 const colors = {
   primary: "white",
   secondary: "#1F2022", // almost black w/ blueish tint
-  tertiary: "#fc300f", // bright red
-  quaternary: "#CECECE" // pale gray
+  tertiary: "#344871", // bright red
+  quaternary: "#CECECE", // pale gray
 };
 
-const theme = createTheme(colors, {
+const theme = createTheme(
+  colors,
+  {
     primary: "Montserrat",
-    secondary: "Helvetica"
-  }, {
+    secondary: "Helvetica",
+  },
+  {
     progress: {
       pacmanTop: {
-        background: colors.quaternary
+        background: colors.quaternary,
       },
       pacmanBottom: {
-        background: colors.quaternary
+        background: colors.quaternary,
       },
       point: {
-        borderColor: colors.quaternary
-      }
+        borderColor: colors.quaternary,
+      },
     },
     components: {
       heading: {
         h1: {
-          fontSize: '4rem',
-          textTransform: 'uppercase'
+          fontSize: "4rem",
+          textTransform: "uppercase",
+          marginBottom: "0.5em",
         },
         h2: {
-          fontSize: '3.5rem',
-          textTransform: 'uppercase'
+          fontSize: "3.5rem",
+          textTransform: "uppercase",
+          marginBottom: "0.5em",
         },
         h3: {
-          fontSize: '3rem',
-          textTransform: 'uppercase'
+          fontSize: "3rem",
+          textTransform: "uppercase",
+          marginBottom: "0.5em",
         },
         h4: {
-          fontSize: '2.5rem',
-          textTransform: 'uppercase'
+          fontSize: "2.5rem",
+          textTransform: "uppercase",
+          marginBottom: "0.5em",
         },
         h5: {
-          fontSize: '2rem',
-          textTransform: 'uppercase'
+          fontSize: "2rem",
+          textTransform: "uppercase",
+          marginBottom: "0.5em",
         },
         h6: {
-          fontSize: '1.5rem',
-          textTransform: 'uppercase'
-        }
+          fontSize: "1.5rem",
+          textTransform: "uppercase",
+        },
+      },
+      p: {
+        marginBottom: "0.5em",
       },
       codePane: {
-        fontSize: '2rem'
-      }
-    }
-  });
+        fontSize: "2rem",
+      },
+    },
+  },
+);
 
 export default theme;

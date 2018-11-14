@@ -3,17 +3,17 @@ import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
 import Redbox from "redbox-react";
-import { Deck, Slide } from 'spectacle';
-import components from './presentation/components';
+import { Deck, Slide } from "spectacle";
+import components from "./presentation/components";
 import slides, { transitions } from "./presentation/index.mdx";
-import theme from './presentation/theme';
+import theme from "./presentation/theme";
 
 require("normalize.css");
 
 const CustomErrorReporter = ({ error }) => <Redbox error={error} />;
 
 CustomErrorReporter.propTypes = {
-  error: PropTypes.instanceOf(Error).isRequired
+  error: PropTypes.instanceOf(Error).isRequired,
 };
 
 const creeperTransition = (transitioning, forward) => {
@@ -27,7 +27,11 @@ const creeperTransition = (transitioning, forward) => {
 
 ReactDOM.render(
   <AppContainer errorReporter={CustomErrorReporter}>
-    <Deck transition={[creeperTransition]} transitionDuration={500} theme={theme}>
+    <Deck
+      transition={[creeperTransition]}
+      transitionDuration={500}
+      theme={theme}
+    >
       {slides.map((S, i) => {
         let transition = transitions[i] || null;
         return <S transition={transition} key={`slide-${i}`} />;
@@ -43,7 +47,11 @@ if (module.hot) {
     const newSlides = require("./presentation/index.mdx").default;
     ReactDOM.render(
       <AppContainer errorReporter={CustomErrorReporter}>
-        <Deck transition={[creeperTransition]} transitionDuration={500} theme={newTheme}>
+        <Deck
+          transition={[creeperTransition]}
+          transitionDuration={500}
+          theme={newTheme}
+        >
           {newSlides.map((S, i) => {
             let transition = transitions[i] || null;
             return <S transition={transition} key={`slide-${i}`} />;

@@ -1,5 +1,6 @@
-import React, { createElement, Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { createElement, Component } from "react";
+import styled from "react-emotion";
+import PropTypes from "prop-types";
 
 import {
   Heading,
@@ -18,9 +19,8 @@ import {
   TableRow,
   TableHeaderItem,
   TableBody,
-  TableItem
-} from 'spectacle';
-
+  TableItem,
+} from "spectacle";
 
 const _Heading = size => {
   const component = ({ children }) => <Heading size={size}>{children}</Heading>;
@@ -48,12 +48,16 @@ const _CodePane = ({ children, language }) => (
 
 _CodePane.propTypes = { code: PropTypes.string, language: PropTypes.string };
 
+const Paragraph = styled(Text)`
+  margin-bottom: 0.75em;
+`;
+
 export default {
   a: Link,
   blockquote: _CombineBlockQuote,
   code: _CodePane,
-  del: _S('strikethrough'),
-  em: _S('italic'),
+  del: _S("strikethrough"),
+  em: _S("italic"),
   h1: _Heading(1),
   h2: _Heading(2),
   h3: _Heading(3),
@@ -63,13 +67,13 @@ export default {
   img: Image,
   codespan: Code,
   li: ListItem,
-  p: Text,
-  strong: _S('bold'),
+  p: Paragraph,
+  strong: _S("bold"),
   ul: List,
   table: Table,
   thead: TableHeader,
   th: TableHeaderItem,
   tbody: TableBody,
   tr: TableRow,
-  td: TableItem
+  td: TableItem,
 };

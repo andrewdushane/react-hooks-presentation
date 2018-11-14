@@ -1,72 +1,114 @@
-import {Cite} from 'spectacle';
-import {DarkSlide, CodeSlide} from './slides';
-import RegularComponent from './regular-component';
+import { CodeSlide } from './slides';
+import Visualization from './Visualization';
 
-# Spectacle MDX!
+# Get Hooked on React Hooks
 
-**open the presentation/index.mdx file to get started**
-
----
-export default DarkSlide
-
-export const transition = ['zoom']
-
-# Write your Spectacle Presentations in Markdown
-## And seamlessly use React Components  
-**How sweet is that**  
-**(super sweet)**
+## An introduction to the new Hooks API
 
 ---
 
-![datboi](https://pbs.twimg.com/media/CkjFUyTXEAEysBY.jpg)
+# Hooks are a new way to handle state and side effects in React
 
+Hooks provide an alternative API to React.Component classes (and by extension HOCs and render props)
 
----
-
-<RegularComponent/>
-
----
-
-###### Typography
-
-# Heading 1
-
-## Heading 2
-
-### Heading 3
-
-#### Heading 4
-
-##### Heading 5
-
-###### Heading 6
-
-Standard Text
+Rather than providing class methods for state management and side effects, Hooks are exported directly from the React core and can be used in function components.
 
 ---
 
-###### Standard List
+# Don't worry about Hooks!
 
-- Item 1
-- Item 2
-- Item 3
-- Item 4
+The only way to use Hooks right now is to use the alpha release of React.
+
+Note that **Hooks will not replace class components**. The addition of Hooks is backwards compatible.
+
+Your class components will continue to have first-class support in React.
 
 ---
 
-> Example Quote
+# Why Hooks?
 
-<Cite>Author</Cite>
+## Encapuslation of logic
+
+Class state and lifecycle force related logic to be spread out across methods.  
+
+---
+
+## Typical class-based workflow:
+
+- Initialize state in the constructor
+- Access state in render method to display data
+- Perform side effect in `componentDidMount`
+- Re-fetch data and update state in callback
+- Perform side effect in `componentDidUpdate`
+
+---
+
+## Typical class-based workflow continued:
+
+- Update state from props in `getDerivedStateFromProps`
+- Cancel side-effect in `componentWillUnmount`
+
+---
+
+# This is a bit of a mess
+
+State management and side effects are strewn about this class and hard to follow.  
+
+---
+
+# Hooks workflow
+
+- Initialize (and re-initialize if necessary) state and get value and setter for the value with single `useState`
+- Perform side effect when necessary, and cancel when component is gone, with `useEffect`
+
+---
+
+# Excellent visualization of the benefit of Hooks
+
+by [Pavel Prichodko](https://twitter.com/prchdk)
+
+---
+
+<Visualization />
+
+---
+
+# Basic Usage
 
 ---
 export default CodeSlide
 
 ```javascript
-class SuperCoolComponent extends React.Component {
-  render() {
-    return (
-      <p>code slide works in markdown too whaaaaat</p>
-    );
+// class component
+// import React, { Component } from "react"
+
+class Thing extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      thing: props.thing,
+    };
   }
+
+  render() {
+    const { thing } = this.state;
+    return ...
+  }
+
+}
+```
+
+---
+
+export default CodeSlide
+
+```javascript
+// Hooks component
+// import React, { useState } from "react";
+
+const Thing = props => {
+  const [thing, setThing] = useState(props.thing);
+  return ...
 }
 ```
