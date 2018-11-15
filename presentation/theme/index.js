@@ -61,7 +61,7 @@ const theme = createTheme(
         marginBottom: "0.5em",
       },
       codePane: {
-        fontSize: "1.6rem",
+        fontSize: "1.5rem",
       },
     },
   },

@@ -153,6 +153,8 @@ const [floridian, hawaiian] = myArray;
 
 - useState
 - useEffect
+- useReducer
+(and a bunch more)
 
 ---
 
@@ -197,6 +199,47 @@ const PageHeadingAndTitle = ({ title, defaultTitle }) => {
   );
   return <h1>{title}</h1>;
 };
+```
+
+---
+
+export default CodeSlide
+
+```javascript
+const taskReducers = {
+  add: (state, action) => { ...state, [action.payload.id]: action.payload },
+  remove: (state, action) => {
+    const { [action.payload]: toRemove, ...newState } = state;
+    return newState;
+  },
+  toggleComplete: (state, action) => ({
+    ...state,
+    [action.payload]: {
+      ...state[action.payload],
+      complete: !state[action.payload].complete,
+    }
+  }),
+  updateContent: (state, action) => ({
+    ...state,
+    [action.payload.id]: {
+      ...state[action.payload.id],
+      content: action.payload.content,
+    },
+  }),
+};
+```
+
+---
+
+export default CodeSlide
+
+```javascript
+const taskReducer = (state, action) =>
+  (taskReducers[action.type] && taskReducers[action.type](state, action)) ||
+  state;
+const [state, dispatch] = useReducer(taskReducer, {
+  abc: { id: "abc", complete: false, content: "" },
+});
 ```
 
 ---
