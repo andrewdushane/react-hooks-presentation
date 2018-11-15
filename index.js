@@ -20,7 +20,7 @@ const creeperTransition = (transitioning, forward) => {
   const offset = forward ? 100 : -100;
   return {
     transform: `
-      translate3d(0,${transitioning ? offset : 0}%, 0)
+      translate3d(${transitioning ? offset : 0}%, 0, 0)
     `,
   };
 };
