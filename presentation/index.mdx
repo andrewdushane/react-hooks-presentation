@@ -146,3 +146,132 @@ Equivalent to:
 ```javascript
 const [floridian, hawaiian] = myArray;
 ```
+
+---
+
+# Let's see some Hooks already!
+
+- useState
+- useEffect
+
+---
+
+export default CodeSlide
+
+```javascript
+const Form = ({ handleSubmit }) => {
+  const [value, setValue] = useState("");
+  return (
+    <form
+      onSubmit={() => {
+        handleSubmit(value);
+      }}
+    >
+      <input
+        placeholder="Type a thing"
+        value={value}
+        onChange={(event) => {
+          setValue(event.target.value);
+        }}
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+```
+
+---
+
+export default CodeSlide
+
+```javascript
+const PageHeadingAndTitle = ({ title, defaultTitle }) => {
+  useEffect(
+    () => {
+      document.title = title;
+      return () => {
+        document.title = defaultTitle;
+      };
+    },
+    [title],
+  );
+  return <h1>{title}</h1>;
+};
+```
+
+---
+
+# Custom Hooks
+
+Combine Hooks or customize their behavior for reusable logic
+
+---
+
+export default CodeSlide
+
+```javascript
+const useInputHandler = initialValue => {
+  const [inputValue, setInputValue] = useState(
+    initialValue,
+  );
+  const onInputChange = e => {
+    setInputValue(e.target.value);
+  };
+  return [inputValue, onInputChange];
+};
+```
+
+---
+
+export default CodeSlide
+
+```javascript
+const Form = (props) => {
+  const [name, handleNameChange] = useInputHandler(props.name);
+  const [email, handleEmailChange] = useInputHandler(props.email);
+  return (
+    <form>
+      <input
+        placeholder="Enter your name"
+        value={name}
+        onChange={handleNameChange}
+      />
+      <input
+        placeholder="Enter your email"
+        value={email}
+        onChange={handleEmailChange}
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+```
+
+---
+
+Custom Hooks don't have to return tuples (or anything)
+
+---
+
+export default CodeSlide
+
+```javascript
+const useList = initialValue => {
+  const [list, setList] = useState(initialValue);
+  const isMember = entity =>
+    list.find(({ id }) => id === entity.id);
+  const add = entity => {
+    setList([...list, entity]);
+  };
+  const remove = entity => {
+    setList(list.filter(({ id }) => id !== entity.id));
+  };
+  return {
+    list,
+    setList,
+    isMember,
+    add,
+    remove,
+  };
+};
+```
